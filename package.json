@@ -1,0 +1,27 @@
+{
+  "name": "zchedule-server",
+  "version": "1.0.0",
+  "author": "",
+  "description": "Node Server for Zchedule Apis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sid25081998/VDiary.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sid25081998/VDiary/issues"
+  },
+  "homepage": "https://github.com/Sid25081998/VDiary#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "unirest": "^0.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
