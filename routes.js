@@ -21,7 +21,7 @@ module.exports= function(app){
     timetable.get(app,req,(err,message)=>{
       if(err) res.json((new Error(message)));
       else{
-        res.json("Happy World");
+        res.json(message);
       }
     });
   });

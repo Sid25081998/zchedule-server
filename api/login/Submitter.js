@@ -14,7 +14,14 @@ exports.submit=function(app,data,callback){
         callback(true,"Bad credentials");
       }
       else{
-        callback(false,response.request.headers.cookie);
+        const onHomeLoad= function(response){
+          var cookieSplit = response.request.headers.cookie.split(";")
+          callback(false,{token: cookieSplit[0], regno: cookieSplit[1].trim()});
+        }
+        console.log(response);
+        unirest.get("https://academicscc.vit.ac.in/student/stud_home.asp")
+        .jar(CookieJar)
+        .end(onHomeLoad);
     }
   };
 
