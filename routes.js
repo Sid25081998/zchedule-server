@@ -12,19 +12,30 @@ module.exports= function(app){
         res.json((new Error(data)));
       }
       else{
-        console.log(data);
         res.json(data);
       }
     });
   });
 
+//TODO document param(token,regno)  method: post url: /timetable
   app.post('/timetable',(req,res)=>{
-    //TODO document param(token,regno)  method: post url: /timetable
     timetable.get(app,{token: req.query.token, regno: req.query.regno},(err,message)=>{
       if(err) res.json((new Error(message)));
       else{
-        res.send(message);
+        res.json(message);
       }
     });
+  });
+
+  app.post('/all',(req,res)=>{
+      login.get(app,{reg: req.query.regno, password: req.query.password},(err,data)=>{
+        if(err) res.json(new Error(data));
+        else{
+          timetable.get(app,data,(err,data)=>{
+            if(err) res.json(new Error(data));
+            else res.json(data);
+          });
+        }
+      });
   });
 };

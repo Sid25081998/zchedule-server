@@ -7,7 +7,6 @@ exports.submit=function(app,data,callback){
   const CookieJar = unirest.jar();
   const AuthCookie=data.AuthCookie;
   CookieJar.add(unirest.cookie(AuthCookie),url);
-  console.log(AuthCookie);
 
   const onPageLoaded=function(response){
       if(response.request.uri.href!=config.homeHref){
@@ -18,7 +17,6 @@ exports.submit=function(app,data,callback){
           var cookieSplit = response.request.headers.cookie.split(";")
           callback(false,{token: cookieSplit[0], regno: cookieSplit[1].trim()});
         }
-        console.log(response);
         unirest.get("https://academicscc.vit.ac.in/student/stud_home.asp")
         .jar(CookieJar)
         .end(onHomeLoad);

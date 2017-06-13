@@ -20,7 +20,6 @@ exports.get= function(app,data,callback){
         AuthCookie: sessionCookie,
         captcha: captchaWord
       }
-      console.log(dataToSubmit.reg);
       Submitter.submit(app,dataToSubmit,(err,message)=>{
         callback(err,message);
       });

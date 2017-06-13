@@ -13,7 +13,6 @@ const onResponse=function(response){
     else{
       const $= cheerio.load(response.body);
       var len = $('table').length;
-      console.log(len);
       if(len==0){
         callback(true,'Session Expired');
       }
@@ -28,7 +27,7 @@ const onResponse=function(response){
       };
       //SCRAPE TIMETABLE AND COURSES PARALLELY
       async.parallel(asyncTasks,(err,results)=>{
-        if(err){callback(true,results)}
+        if(err){callback(true,results.courses || results.timeTable)}
         else{
           callback(false,results);
         }
