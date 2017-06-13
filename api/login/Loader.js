@@ -15,8 +15,8 @@ exports.get= function(app,data,callback){
       const captchaWord=CaptchaParser.parse(response.body);
       const dataToSubmit=
       {
-        reg : data.query.reg,
-        password: data.query.password,
+        reg : data.reg,
+        password: data.password,
         AuthCookie: sessionCookie,
         captcha: captchaWord
       }

@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Sid25081998/VDiary#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.1",
+    "cheerio-tableparser": "^1.0.1",
     "express": "^4.15.3",
     "unirest": "^0.5.1"
   },
