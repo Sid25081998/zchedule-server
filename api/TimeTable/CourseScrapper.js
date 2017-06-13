@@ -2,6 +2,7 @@
 const cheerio= require('cheerio');
 const cheerioTableparser = require('cheerio-tableparser');
 const Course = require('../../Classes/Course');
+const strings = require('../../strings');
 
 exports.scrape= function(app,data,callback){
 
@@ -26,6 +27,6 @@ callback(false,courses);
 }
 catch(e){
   console.log(e.message);
-  callback(true,'Session expired');
+  callback(true,strings.sessionExpired);
 }
 }

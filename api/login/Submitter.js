@@ -1,6 +1,7 @@
 "use strict";
 const unirest=require('unirest');
 const config = require('../../config');
+const strings =require('../../strings');
 
 exports.submit=function(app,data,callback){
   const url= config.loginSubmitAction;
@@ -10,7 +11,7 @@ exports.submit=function(app,data,callback){
 
   const onPageLoaded=function(response){
       if(response.request.uri.href!=config.homeHref){
-        callback(true,"Bad credentials");
+        callback(true,strings.badCredentials);
       }
       else{
         const onHomeLoad= function(response){
