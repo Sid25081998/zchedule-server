@@ -1,11 +1,11 @@
 const login = require('./api/login/Loader');
 const timetable = require('./api/TimeTable/Loader');
+const attendaene = require('./api/Attendance/Loader');
 const Error = require("./Classes/Error");
 
 module.exports= function(app){
   //TODO document param(regno,password)  method: post url: /login
   app.post('/login',(req,res)=>{
-    //onlogin
     login.get(app,{reg: req.query.regno, password: req.query.password},(err,data)=>{
       if(err){
         console.log(data);
@@ -27,6 +27,17 @@ module.exports= function(app){
     });
   });
 
+  //TODO document param(token,regno)  method: post url: /attendance
+  app.post('/attendance',(req,res)=>{
+    attendance.get(app,{token: req.query.token, regno: req.query.regno},(err,data)=>{
+      if(err) res.json(new Error(data));
+      else{
+        res.send(data);
+      }
+    });
+  });
+
+  //TODO document param(regno,password)  method: post url: /all
   app.post('/all',(req,res)=>{
       login.get(app,{reg: req.query.regno, password: req.query.password},(err,data)=>{
         if(err) res.json(new Error(data));

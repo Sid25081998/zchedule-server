@@ -12,14 +12,19 @@ exports.scrape = function(app,data,callback){
 try{
   var table = [];
   for (var row = 2; row<7;row++){
-    var dayArray = [];
+    var contentArray = [];
     for (var col = 1;col<timetableData.length-2;col++){
-      const item = new Session(timetableData[col][0]/*theoryHour*/,timetableData[col][1]/*labHour*/,timetableData[col][row]/*cellContent*/);
-      dayArray.push(item);
+      contentArray.push(timetableData[col][row]/*cellContent*/);
     }
-    table.push(dayArray);
+    table.push(contentArray);
   }
-  callback(false,table);
+  var theoryHourArray = [];
+  var labHourArray = [];
+  for (var col=1;col<timetableData.length-2;col++){
+    theoryHourArray.push(timetableData[col][0]); //theoryHour
+    labHourArray.push(timetableData[col][1]); //labHour
+  }
+  callback(false,{ contentTable:table, theoryHours: theoryHourArray, labHours: labHourArray });
 }
 catch(e){
   console.log(e.message);

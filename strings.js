@@ -3,5 +3,7 @@ module.exports={
   badCredentials: 'Bad Credentials',
   vitDown: 'Vit is down',
   serverDown: 'Server is down',
-  sessionExpired: 'Session Expired'
+  sessionExpired: 'Session Expired',
+  serverError: 'Server malfunctioned',
+  wrongRoute: 'Requested route was not found'
 }

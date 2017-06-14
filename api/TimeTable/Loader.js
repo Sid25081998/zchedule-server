@@ -28,7 +28,7 @@ const onResponse=function(response){
       };
       //SCRAPE TIMETABLE AND COURSES PARALLELY
       async.parallel(asyncTasks,(err,results)=>{
-        if(err){callback(true,results.courses || results.timeTable)}
+        if(err) callback(true,strings.serverError);
         else{
           callback(false,results);
         }
