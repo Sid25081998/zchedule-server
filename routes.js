@@ -1,6 +1,6 @@
 const login = require('./api/login/Loader');
 const timetable = require('./api/TimeTable/Loader');
-const attendaene = require('./api/Attendance/Loader');
+const attendance = require('./api/Attendance/Loader');
 const Error = require("./Classes/Error");
 
 module.exports= function(app){
