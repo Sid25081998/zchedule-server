@@ -32,5 +32,6 @@ exports.submit=function(app,data,callback){
     passwd: data.password,
     vrfcd: data.captcha
   })
+  .timeout(28500)
   .end(onPageLoaded);
 };
