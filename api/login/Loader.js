@@ -4,6 +4,7 @@ const CaptchaParser = require('./CaptchaParser');
 const Submitter=require('./Submitter');
 const config=require("../../config");
 const strings = require('../../strings');
+const cache = require('memory-cache');
 
 const captchaUri = config.captchaUri;
 
@@ -33,9 +34,19 @@ exports.get= function(app,data,callback){
     callback(true,strings.invalidParameter);
   }
   else{
-  unirest.get(captchaUri)
-      .encoding(null)
-      .timeout(26000)
-      .end(onRequest);
+    var cookie=cache.get(regno+password);
+    if(cookie==null){
+      console.log("miss");
+      unirest.get(captchaUri)
+          .encoding(null)
+          .timeout(26000)
+          .end(onRequest);
+        }
+    else{
+      console.log("hit");
+      var cookieSplit = cookie.split(";");
+      cache.put(data.reg+data.password,cookie,config.validity*1000*60);
+      callback(false,{token: cookieSplit[0], regno: cookieSplit[1].trim()});
     }
+  }
 }

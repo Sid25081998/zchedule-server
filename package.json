@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev" : "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "cheerio": "^1.0.0-rc.1",
     "cheerio-tableparser": "^1.0.1",
     "express": "^4.15.3",
+    "memory-cache": "^0.2.0",
     "unirest": "^0.5.1"
   },
   "devDependencies": {

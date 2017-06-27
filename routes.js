@@ -19,23 +19,31 @@ module.exports= function(app){
 
 //TODO document param(token,regno)  method: post url: /timetable
   app.post('/timetable',(req,res)=>{
-    timetable.get(app,{token: req.query.token, regno: req.query.regno},(err,message)=>{
-      if(err) res.json((new Error(message)));
+    login.get(app,{reg: req.query.regno, password: req.query.password},(err,data)=>{
+      if(err) res.json(new Error(data));
       else{
-        res.json(message);
+        timetable.get(app,data,(err,data)=>{
+          if(err) res.json(new Error(data));
+          else res.json(data);
+        });
       }
     });
   });
 
   //TODO document param(token,regno)  method: post url: /attendance
   app.post('/attendance',(req,res)=>{
-    attendance.get(app,{token: req.query.token, regno: req.query.regno},(err,data)=>{
+    login.get(app,{reg: req.query.regno, password: req.query.password},(err,data)=>{
       if(err) res.json(new Error(data));
       else{
-        res.send(data);
+        attendance.get(app,data,(err,data)=>{
+          if(err) res.json(new Error(data));
+          else{
+            res.send(data);
+          }
+        });
       }
-    });
   });
+});
 
   //TODO document param(regno,password)  method: post url: /all
   app.post('/all',(req,res)=>{
