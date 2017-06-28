@@ -28,6 +28,7 @@ exports.get= function(app,data,callback){
     }
   };
 
+  if(data!=null){
   const regno = data.reg;
   const password = data.password;
   if(typeof(regno)=='undefined' || typeof(password)=='undefined'){
@@ -36,17 +37,22 @@ exports.get= function(app,data,callback){
   else{
     var cookie=cache.get(regno+password);
     if(cookie==null){
-      console.log("miss");
+      console.log("cache : miss");
       unirest.get(captchaUri)
           .encoding(null)
           .timeout(26000)
           .end(onRequest);
         }
     else{
-      console.log("hit");
+      console.log("cache : hit");
       var cookieSplit = cookie.split(";");
       cache.put(data.reg+data.password,cookie,config.validity*1000*60);
       callback(false,{token: cookieSplit[0], regno: cookieSplit[1].trim()});
     }
   }
+}
+else{
+  callback(true,strings.invalidSyntax);
+}
+
 }
