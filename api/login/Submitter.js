@@ -13,7 +13,6 @@ exports.submit=function(app,data,callback){
   const onPageLoaded=function(response){
       if(response.request.uri.href!=config.homeHref){
         console.log(response.request.uri.href);
-        console.log(response.body);
         callback(true,strings.badCredentials);
       }
       else{
