@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Sid25081998/VDiary#readme",
   "dependencies": {
+    "@risingstack/trace": "^3.14.0",
     "cheerio": "^1.0.0-rc.1",
     "cheerio-tableparser": "^1.0.1",
     "express": "^4.15.3",

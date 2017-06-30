@@ -3,6 +3,8 @@ const express = require('express');
 const config = require('./config');
 const Error = require('./Classes/Error');
 const strings = require('./strings');
+require('@risingstack/trace');
+
 
 const app=express();
 const route = require("./routes")(app);
