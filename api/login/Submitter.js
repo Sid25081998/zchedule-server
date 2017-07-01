@@ -11,6 +11,7 @@ exports.submit=function(app,data,callback){
   CookieJar.add(unirest.cookie(AuthCookie),url);
 
   const onPageLoaded=function(response){
+    try{
       if(response.request.uri.href!=config.homeHref){
         console.log(response.request.uri.href);
         callback(true,strings.badCredentials);
@@ -25,6 +26,10 @@ exports.submit=function(app,data,callback){
         .jar(CookieJar)
         .end(onHomeLoad);
     }
+  }
+  catch(e){
+    console.log(e.message);
+  }
   };
 
   unirest.post(url)

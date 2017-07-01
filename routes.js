@@ -8,6 +8,7 @@ const strings = require("./strings");
 module.exports= function(app){
   //TODO document param(regno,password)  method: post url: /login
   app.post('/login',(req,res)=>{
+    var before= Date.now();
     var credentials = headerParser.parse(req.headers);
     login.get(app,credentials,(err,data)=>{
       if(err){
@@ -17,11 +18,14 @@ module.exports= function(app){
       else{
         res.json(data);
       }
+      var after = Date.now();
+      console.log("Response Time :login"+after-before);
     });
   });
 
 //TODO document param(token,regno)  method: post url: /timetable
   app.post('/timetable',(req,res)=>{
+    var before= Date.now();
     var credentials = headerParser.parse(req.headers);
     login.get(app,credentials,(err,data)=>{
       if(err) res.json(new Error(data));
@@ -29,6 +33,9 @@ module.exports= function(app){
         timetable.get(app,data,(err,data)=>{
           if(err) res.json(new Error(data));
           else res.json(data);
+
+          var after = Date.now();
+          console.log("Response Time :timetable"+after-before);
         });
       }
     });
@@ -36,6 +43,7 @@ module.exports= function(app){
 
   //TODO document param(token,regno)  method: post url: /attendance
   app.post('/attendance',(req,res)=>{
+    var before= Date.now();
     var credentials = headerParser.parse(req.headers);
     login.get(app,credentials,(err,data)=>{
       if(err) res.json(new Error(data));
@@ -45,6 +53,8 @@ module.exports= function(app){
           else{
             res.send(data);
           }
+          var after = Date.now();
+          console.log("Response Time :attendance"+after-before);
         });
       }
   });
@@ -52,6 +62,7 @@ module.exports= function(app){
 
   //TODO document param(regno,password)  method: post url: /all
   app.post('/all',(req,res)=>{
+    var before= Date.now();
     var credentials = headerParser.parse(req.headers);
       login.get(app,credentials,(err,data)=>{
         if(err) res.json(new Error(data));
@@ -59,6 +70,9 @@ module.exports= function(app){
           timetable.get(app,data,(err,data)=>{
             if(err) res.json(new Error(data));
             else res.json(data);
+
+            var after = Date.now();
+            console.log("Response Time :all"+after-before);
           });
         }
       });
