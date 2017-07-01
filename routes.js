@@ -19,7 +19,7 @@ module.exports= function(app){
         res.json(data);
       }
       var after = Date.now();
-      console.log("Response Time :login"+after-before);
+      console.log("Response Time :login "+(after-before).toString());
     });
   });
 
@@ -35,7 +35,7 @@ module.exports= function(app){
           else res.json(data);
 
           var after = Date.now();
-          console.log("Response Time :timetable"+after-before);
+          console.log("Response Time :timetable "+(after-before).toString());
         });
       }
     });
@@ -54,7 +54,7 @@ module.exports= function(app){
             res.send(data);
           }
           var after = Date.now();
-          console.log("Response Time :attendance"+after-before);
+          console.log("Response Time :attendance "+(after-before).toString());
         });
       }
   });
@@ -72,7 +72,7 @@ module.exports= function(app){
             else res.json(data);
 
             var after = Date.now();
-            console.log("Response Time :all"+after-before);
+            console.log("Response Time :all : "+(after-before).toString());
           });
         }
       });
