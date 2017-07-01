@@ -79,7 +79,9 @@ module.exports= function(app){
           };
           async.parallel(asyncTasks,(err,results)=>{
             if(err) res.json(new Error(results));
-            else res.json(results);
+            else{
+              res.json({"attendanceSummary" : results.attendance, "courses" : results.timeTable.courses, "timeTable": results.timeTable.timeTable });
+            }
 
             var after = Date.now();
             console.log("Response Time :all : "+(after-before).toString());
