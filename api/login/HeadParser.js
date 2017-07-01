@@ -1,10 +1,10 @@
 "use strict"
 exports.parse = function(header){
   try{
-  var params = header.authorization.split(" ")[1].split(":");
+  var params = JSON.parse(header.authorization);
   return {
-    reg : params[0],
-    password : params[1],
+    reg : params.userName,
+    password : params.password,
   }
 }
 catch(e){
