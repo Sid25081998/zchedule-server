@@ -4,6 +4,7 @@ const attendance = require('./api/Attendance/Loader');
 const Error = require("./Classes/Error");
 const headerParser = require("./api/login/HeadParser");
 const strings = require("./strings");
+const async = require("async");
 
 module.exports= function(app){
   //TODO document param(regno,password)  method: post url: /login
@@ -51,7 +52,7 @@ module.exports= function(app){
         attendance.get(app,data,(err,data)=>{
           if(err) res.json(new Error(data));
           else{
-            res.send(data);
+            res.json(data);
           }
           var after = Date.now();
           console.log("Response Time :attendance "+(after-before).toString());
@@ -67,13 +68,23 @@ module.exports= function(app){
       login.get(app,credentials,(err,data)=>{
         if(err) res.json(new Error(data));
         else{
-          timetable.get(app,data,(err,data)=>{
-            if(err) res.json(new Error(data));
-            else res.json(data);
+
+          var asyncTasks = {
+            timeTable : function(asyncCallback){
+              timetable.get(app,data,asyncCallback)
+            },
+            attendance : function(asyncCallback){
+              attendance.get(app,data,asyncCallback);
+            }
+          };
+          async.parallel(asyncTasks,(err,results)=>{
+            if(err) res.json(new Error(results));
+            else res.json(results);
 
             var after = Date.now();
             console.log("Response Time :all : "+(after-before).toString());
           });
+
         }
       });
   });
