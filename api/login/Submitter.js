@@ -11,6 +11,8 @@ exports.submit=function(app,data,callback){
   CookieJar.add(unirest.cookie(AuthCookie),url);
 
   const onPageLoaded=function(response){
+    const after = Date.now();
+    console.log("Page Loaded in : "+(after-before).toString()+"ms");
     try{
       if(response.request.uri.href!=config.homeHref){
         console.log(response.request.uri.href);
@@ -22,6 +24,7 @@ exports.submit=function(app,data,callback){
           cache.put(data.reg+data.password,response.request.headers.cookie,config.validity*1000*60);
           callback(false,{token: cookieSplit[0], regno: cookieSplit[1].trim()});
         }
+
         unirest.get("https://academicscc.vit.ac.in/student/stud_home.asp")
         .jar(CookieJar)
         .end(onHomeLoad);
@@ -32,6 +35,7 @@ exports.submit=function(app,data,callback){
   }
   };
 
+  const before = Date.now();
   unirest.post(url)
   .jar(CookieJar)
   .form({

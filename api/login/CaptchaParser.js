@@ -2,7 +2,10 @@
 
 
 exports.parse = function (bitmapBuffer) {
+  const before= Date.now();
   const pixelMap = getPixelMapFromBuffer(bitmapBuffer);
+  const after = Date.now();
+  console.log("Captcha Parsed in : "+(after-before).toString()+"ms")
   return getCaptcha(pixelMap);
 };
 

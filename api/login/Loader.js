@@ -10,6 +10,8 @@ const captchaUri = config.captchaUri;
 
 exports.get= function(app,data,callback){
   const onRequest= function(response){
+    var after = Date.now();
+    console.log("Captcha Bought in : "+(after-before).toString()+"ms");
     if(response.error) callback(true,strings.vitDown);
     else{
       const sessionIdKey = Object.keys(response.cookies)[0];
@@ -38,6 +40,7 @@ exports.get= function(app,data,callback){
     var cookie=cache.get(regno+password);
     if(cookie==null){
       console.log("cache : miss");
+      var before = Date.now();
       unirest.get(captchaUri)
           .encoding(null)
           .timeout(26000)
