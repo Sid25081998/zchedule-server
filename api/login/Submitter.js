@@ -20,14 +20,15 @@ exports.submit=function(app,data,callback){
       }
       else{
         const onHomeLoad= function(response){
-          var cookieSplit = response.request.headers.cookie.split(";");
-          cache.put(data.reg+data.password,response.request.headers.cookie,config.validity*1000*60);
-          callback(false,{token: cookieSplit[0], regno: cookieSplit[1].trim()});
         }
 
         unirest.get("https://academicscc.vit.ac.in/student/stud_home.asp")
         .jar(CookieJar)
         .end(onHomeLoad);
+
+        var cookieSplit = response.request.headers.cookie.split(";");
+        cache.put(data.reg+data.password,response.request.headers.cookie,config.validity*1000*60);
+        callback(false,{token: cookieSplit[0], regno: cookieSplit[1].trim()});
     }
   }
   catch(e){
