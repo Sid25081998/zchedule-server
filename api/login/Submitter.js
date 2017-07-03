@@ -8,8 +8,8 @@ exports.submit=function(app,data,callback){
   const url= config.loginSubmitAction;
   const CookieJar = unirest.jar();
   const AuthCookie=data.AuthCookie;
-  CookieJar.add(unirest.cookie(AuthCookie),url);
 
+  CookieJar.add(unirest.cookie(AuthCookie),url);
   const onPageLoaded=function(response){
     const after = Date.now();
     console.log("Page Loaded in : "+(after-before).toString()+"ms");

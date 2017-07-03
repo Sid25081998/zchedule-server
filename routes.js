@@ -49,7 +49,7 @@ module.exports= function(app){
     login.get(app,credentials,(err,data)=>{
       if(err) res.json(new Error(data));
       else{
-        attendance.get(app,data,(err,data)=>{
+        attendance.get(app,data,false,(err,data)=>{
           if(err) res.json(new Error(data));
           else{
             res.json(data);
@@ -74,7 +74,7 @@ module.exports= function(app){
               timetable.get(app,data,asyncCallback)
             },
             attendance : function(asyncCallback){
-              attendance.get(app,data,asyncCallback);
+              attendance.get(app,data,true,asyncCallback);
             }
           };
           async.parallel(asyncTasks,(err,results)=>{
