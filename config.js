@@ -12,6 +12,6 @@ module.exports= {
   attendanceSubmitHref : 'https://academicscc.vit.ac.in/student/attn_report_details.asp',
 
   //WITH SEM VARIABLE
-  TimeTableHref: 'https://academicscc.vit.ac.in/student/course_regular.asp?sem=WS',
-  attendanceHref : 'https://academicscc.vit.ac.in/student/attn_report.asp?sem=WS'
+  TimeTableHref: 'https://academicscc.vit.ac.in/student/course_regular.asp?sem=FS',
+  attendanceHref : 'https://academicscc.vit.ac.in/student/attn_report.asp?sem=FS'
 }
