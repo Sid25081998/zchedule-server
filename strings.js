@@ -6,5 +6,6 @@ module.exports={
   sessionExpired: 'Session Expired',
   serverError: 'Server malfunctioned',
   wrongRoute: 'Requested route was not found',
-  invalidSyntax: 'Invalid Syntax'
+  invalidSyntax: 'Invalid Syntax',
+  retry: 'Retry'
 }

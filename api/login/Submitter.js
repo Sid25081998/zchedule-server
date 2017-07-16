@@ -3,11 +3,18 @@ const unirest=require('unirest');
 const config = require('../../config');
 const strings =require('../../strings');
 const cache = require('memory-cache');
+const cheerio = require('cheerio');
 
 exports.submit=function(app,data,callback){
   const url= config.loginSubmitAction;
   const CookieJar = unirest.jar();
   const AuthCookie=data.AuthCookie;
+
+  const getMessage= function(body){
+    const $ = cheerio.load(body);
+    console.log($("input[name='message']").val());
+    return $("input[name='message']").val();
+  };
 
   CookieJar.add(unirest.cookie(AuthCookie),url);
   const onPageLoaded=function(response){
@@ -16,7 +23,12 @@ exports.submit=function(app,data,callback){
     try{
       if(response.request.uri.href!=config.homeHref){
         console.log(response.request.uri.href);
-        callback(true,strings.badCredentials);
+        var message = getMessage(response.body);
+        if(message=='Invalid Register No. or Password.')
+          callback(true,strings.badCredentials);
+        else {
+          callback(true,strings.retry);
+        }
       }
       else{
         const onHomeLoad= function(response){
