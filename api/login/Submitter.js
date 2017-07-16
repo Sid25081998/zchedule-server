@@ -12,8 +12,9 @@ exports.submit=function(app,data,callback){
 
   const getMessage= function(body){
     const $ = cheerio.load(body);
-    console.log($("input[name='message']").val());
-    return $("input[name='message']").val();
+    const message = $("input[name='message']").val();
+    console.log($(message);
+    return message;
   };
 
   CookieJar.add(unirest.cookie(AuthCookie),url);
