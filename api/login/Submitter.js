@@ -13,7 +13,7 @@ exports.submit=function(app,data,callback){
   const getMessage= function(body){
     const $ = cheerio.load(body);
     const message = $("input[name='message']").val();
-    console.log($(message);
+    console.log(message);
     return message;
   };
 
