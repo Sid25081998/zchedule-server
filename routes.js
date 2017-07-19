@@ -78,7 +78,10 @@ module.exports= function(app){
             }
           };
           async.parallel(asyncTasks,(err,results)=>{
-            if(err) res.json(new Error(results));
+            if(err) {
+              console.log(results);
+              res.json(new Error(strings.serverError));
+            }
             else{
               res.json({"attendanceSummary" : results.attendance, "courses" : results.timeTable.courses, "timeTable": results.timeTable.timeTable });
             }
