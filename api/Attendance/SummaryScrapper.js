@@ -7,7 +7,9 @@ const strings = require("../../strings");
 exports.get = function(data,callback){
   try{
   var $= cheerio.load(data);
-  var table = cheerio.load("<table>"+ $('table').eq(3).html()+"</table>");
+  const allTableInstance = $('table');
+  var tableLength = allTableInstance.length;
+  var table = cheerio.load("<table>"+ allTableInstance.eq(tableLength-1).html()+"</table>");
   cheerioTableparser(table);
   var CourseData = table("table").parsetable(true, true, true);
   const codes = CourseData[1];
