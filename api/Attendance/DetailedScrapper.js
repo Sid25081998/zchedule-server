@@ -9,7 +9,9 @@ const strings = require("../../strings");
 exports.get= function(data,creds,callback){
   const url = config.attendanceSubmitHref;
   var page = cheerio.load(data);
-  var $ = cheerio.load("<table>"+ page('table').eq(3).html()+"</table>");
+  var tableInstance = page("table");
+  var noOftables = tableInstance.length;
+  var $ = cheerio.load("<table>"+ tableInstance.eq(noOftables-1).html()+"</table>");
   var semCode = $("input[name='semcode']").eq(0).val();
   var classnbrs = $("input[name='classnbr']");
   var fromDate  = $("input[name='from_date']").eq(0).val();
@@ -18,7 +20,6 @@ exports.get= function(data,creds,callback){
   var crstps = $("input[name='crstp']");
   var length = crscds.length;
 
-  console.log(length);
 
   var CookieJar = unirest.jar()
   CookieJar.add(unirest.cookie(creds.token),url);
@@ -41,13 +42,12 @@ exports.get= function(data,creds,callback){
 }
 
   const onDetails = function(course,asyncCallback){
-    console.log("Scrappging");
     unirest.post(url)
     .jar(CookieJar)
     .form(course)
     .timeout(20*1000)
     .end((response)=>{
-      detail.get(code+type,response,asyncCallback);
+      detail.get(course.crscd,course.crstp,response,asyncCallback);
     });
   };
 
