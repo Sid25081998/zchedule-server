@@ -12,6 +12,8 @@ exports.get = function(data,callback){
   var table = cheerio.load("<table>"+ allTableInstance.eq(tableLength-1).html()+"</table>");
   cheerioTableparser(table);
   var CourseData = table("table").parsetable(true, true, true);
+
+  console.log(CourseData);
   const codes = CourseData[1];
   const types = CourseData[3];
   const attendeds = CourseData[6];

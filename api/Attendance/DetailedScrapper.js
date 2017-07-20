@@ -18,7 +18,7 @@ exports.get= function(data,creds,callback){
   var crstps = $("input[name='crstp']");
   var length = crscds.length;
 
-  var asyncTasks =[];
+  console.log(length);
 
   var CookieJar = unirest.jar()
   CookieJar.add(unirest.cookie(creds.token),url);
@@ -41,6 +41,7 @@ exports.get= function(data,creds,callback){
 }
 
   const onDetails = function(course,asyncCallback){
+    console.log("Scrappging");
     unirest.post(url)
     .jar(CookieJar)
     .form(course)
@@ -48,9 +49,9 @@ exports.get= function(data,creds,callback){
     .end((response)=>{
       detail.get(code+type,response,asyncCallback);
     });
-  }
+  };
 
   async.map(courseDetails,onDetails,(err,response)=>{
     callback(false,response);
-  })
+  });
 }

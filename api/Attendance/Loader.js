@@ -26,6 +26,7 @@ exports.get= function(app,data,isSummary,callback){
   if(typeof(token)!="undefined" && typeof(reg)!="undefined"){
     var summaryResponse=cache.get(token);
     if(summaryResponse==null){
+      console.log("TOken Erroe");
       var semStart = config.semStart;
       var semEnd = config.semEnd;
       var url= config.attendanceHref+'&fmdt='+semStart+'&todt='+semEnd;
@@ -36,6 +37,7 @@ exports.get= function(app,data,isSummary,callback){
       .end(onLoad);
     }
     else{
+      console.log("TOken no error");
       if(isSummary){
         summaryScrapper.get(summaryResponse,(err,message)=>{
           callback(err,message);

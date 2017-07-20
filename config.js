@@ -1,7 +1,7 @@
 module.exports= {
   port: process.env.PORT || 8080,
-  semStart : process.env.semStart || '04-Jan-2017',
-  semEnd : process.env.semEnd || '01-Jul-2017',
+  semStart : process.env.semStart || '11-Jul-2017',
+  semEnd : process.env.semEnd || '10-Nov-2017',
   regTextName : 'regno',
   pwdTextName : 'passwd',
   captchaTextName : 'vrfcd',
