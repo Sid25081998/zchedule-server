@@ -14,8 +14,8 @@ exports.get= function(data,creds,callback){
   var $ = cheerio.load("<table>"+ tableInstance.eq(noOftables-1).html()+"</table>");
   var semCode = $("input[name='semcode']").eq(0).val();
   var classnbrs = $("input[name='classnbr']");
-  var fromDate  = $("input[name='from_date']").eq(0).val();
-  var toDate = $("input[name='to_date']").eq(0).val();
+  var fromDates  = $("input[name='from_date']");
+  var toDates = $("input[name='to_date']");
   var crscds = $("input[name='crscd']");
   var crstps = $("input[name='crstp']");
   var length = crscds.length;
@@ -29,7 +29,9 @@ exports.get= function(data,creds,callback){
   for (var index =0;index<length;index++){
     var number = classnbrs.eq(index).val(),
     code = crscds.eq(index).val(),
-    type = crstps.eq(index).val();
+    type = crstps.eq(index).val(),
+    fromDate = fromDates.eq(index).val(),
+    toDate = toDates.eq(index).val();
     var courseDetail = {
       semcode : semCode,
       classnbr : number,
