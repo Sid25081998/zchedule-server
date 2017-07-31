@@ -1,6 +1,7 @@
 const login = require('./api/login/Loader');
 const timetable = require('./api/TimeTable/Loader');
 const attendance = require('./api/Attendance/Loader');
+const assignments = require("./api/Assignment/Loader");
 const Error = require("./Classes/Error");
 const headerParser = require("./api/login/HeadParser");
 const strings = require("./strings");
@@ -92,5 +93,23 @@ module.exports= function(app){
 
         }
       });
+  });
+
+  app.post("/assignments",(req,res)=>{
+    var before= Date.now();
+    var credentials = headerParser.parse(req.headers);
+    login.get(app,credentials,(err,data)=>{
+      if(err) res.json(new Error(data));
+      else{
+        assignments.get(app,data,(err,result)=>{
+          if(err) res.json(new Error(result));
+          else{
+            res.json(result);
+          }
+          var after = Date.now();
+          console.log("Response Time :attendance "+(after-before).toString());
+        });
+      }
+    });
   });
 };

@@ -10,8 +10,10 @@ module.exports= {
   loginSubmitAction : 'https://academicscc.vit.ac.in/student/stud_login_submit.asp',
   homeHref : "https://academicscc.vit.ac.in/student/home.asp",
   attendanceSubmitHref : 'https://academicscc.vit.ac.in/student/attn_report_details.asp',
+  assignmentSubmitHref : 'https://academicscc.vit.ac.in/student/cal_da_process.asp',
 
   //WITH SEM VARIABLE
   TimeTableHref: 'https://academicscc.vit.ac.in/student/course_regular.asp?sem=FS',
-  attendanceHref : 'https://academicscc.vit.ac.in/student/attn_report.asp?sem=FS'
+  attendanceHref : 'https://academicscc.vit.ac.in/student/attn_report.asp?sem=FS',
+  assignmentsHref : 'https://academicscc.vit.ac.in/student/cal_da.asp?sem=FS'
 }

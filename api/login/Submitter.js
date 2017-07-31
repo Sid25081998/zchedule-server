@@ -47,6 +47,7 @@ exports.submit=function(app,data,callback){
   }
   catch(e){
     console.log(e.message);
+    callback(true,strings.serverError)
   }
   };
 
