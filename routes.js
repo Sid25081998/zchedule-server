@@ -95,6 +95,8 @@ module.exports= function(app){
       });
   });
 
+
+  //TODO document param(regno,password)  method: post url: /assignments 
   app.post("/assignments",(req,res)=>{
     var before= Date.now();
     var credentials = headerParser.parse(req.headers);

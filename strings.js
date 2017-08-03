@@ -7,5 +7,6 @@ module.exports={
   serverError: 'Server malfunctioned',
   wrongRoute: 'Requested route was not found',
   invalidSyntax: 'Invalid Syntax',
-  retry: 'Retry'
+  retry: 'Retry',
+  pageNotReady: 'Page Not Ready'
 }

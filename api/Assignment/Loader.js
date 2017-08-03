@@ -1,6 +1,6 @@
 const unirest = require("unirest");
 const config = require("../../config");
-const strings =require("../../strings");
+const strings = require("../../strings");
 
 exports.get= function(app,data,callback){
   const CookieJar = unirest.jar();
