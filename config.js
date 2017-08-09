@@ -6,6 +6,7 @@ module.exports= {
   pwdTextName : 'passwd',
   captchaTextName : 'vrfcd',
   validity : 5, //IN MINUTES
+  moodleBaseUrl : "http://moodlecc.vit.ac.in", 
   captchaUri : "https://academicscc.vit.ac.in/student/captcha.asp",
   loginSubmitAction : 'https://academicscc.vit.ac.in/student/stud_login_submit.asp',
   homeHref : "https://academicscc.vit.ac.in/student/home.asp",

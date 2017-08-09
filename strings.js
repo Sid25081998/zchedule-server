@@ -8,5 +8,6 @@ module.exports={
   wrongRoute: 'Requested route was not found',
   invalidSyntax: 'Invalid Syntax',
   retry: 'Retry',
-  pageNotReady: 'Page Not Ready'
+  pageNotReady: 'Page Not Ready',
+  moodleError : "Moodle Error"
 }

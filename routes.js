@@ -6,6 +6,7 @@ const Error = require("./Classes/Error");
 const headerParser = require("./api/login/HeadParser");
 const strings = require("./strings");
 const async = require("async");
+const moodle = require("./api/Assignment/Moodle");
 
 module.exports= function(app){
   //TODO document param(regno,password)  method: post url: /login
@@ -96,7 +97,7 @@ module.exports= function(app){
   });
 
 
-  //TODO document param(regno,password)  method: post url: /assignments 
+  //TODO document param(regno,password)  method: post url: /assignments
   app.post("/assignments",(req,res)=>{
     var before= Date.now();
     var credentials = headerParser.parse(req.headers);
@@ -113,5 +114,18 @@ module.exports= function(app){
         });
       }
     });
+  });
+
+  app.post("/moodle",(req,res)=>{
+    var before= Date.now();
+    var credentials = headerParser.parse(req.headers);
+      moodle.getAssignments(credentials,(err,message)=>{
+        if(err)res.json(new Error(message));
+        else{
+          res.json(message);
+        }
+        var after = Date.now();
+        console.log("Response Time :Moodle Assignments "+(after-before).toString());
+      });
   });
 };
