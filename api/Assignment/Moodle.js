@@ -14,7 +14,7 @@ exports.getAssignments = function(credentials,callback){
       courses = info.courses;
       assignments = {};
       for (courseIndex in courses){
-        name = courses[courseIndex].shortname;
+        name = courses[courseIndex].fullname;
         rawAssignments = courses[courseIndex].assignments
         allAssignments = []
         for (assignmentIndex in rawAssignments){
