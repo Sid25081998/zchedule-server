@@ -11,8 +11,6 @@ exports.get = function(credentials,id,callback){
             courseid : id
           }
       }).then(function(info) {
-        callback(false,info);
-        return;
         allAcitvities = {};
         for (var dateInd = 1;dateInd<info.length;dateInd++){
           allModules = [];
