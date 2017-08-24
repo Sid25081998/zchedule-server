@@ -2,11 +2,13 @@ const login = require('./api/login/Loader');
 const timetable = require('./api/TimeTable/Loader');
 const attendance = require('./api/Attendance/Loader');
 const assignments = require("./api/Assignment/Loader");
+const examSchedule = require("./api/ExamSchedule/Loader");
 const Error = require("./Classes/Error");
 const headerParser = require("./api/login/HeadParser");
 const strings = require("./strings");
 const async = require("async");
-const moodle = require("./api/Assignment/Moodle");
+const moodleSummary = require("./api/Moodle/Summary");
+const moodleDetails= require("./api/Moodle/Details");
 
 module.exports= function(app){
   //TODO document param(regno,password)  method: post url: /login
@@ -116,16 +118,49 @@ module.exports= function(app){
     });
   });
 
-  app.post("/moodle",(req,res)=>{
+  app.post("/moodle/summary",(req,res)=>{
     var before= Date.now();
     var credentials = headerParser.parse(req.headers);
-      moodle.getAssignments(credentials,(err,message)=>{
+      moodleSummary.get(credentials,(err,message)=>{
         if(err)res.json(new Error(message));
         else{
           res.json(message);
         }
         var after = Date.now();
-        console.log("Response Time :Moodle Assignments "+(after-before).toString());
+        console.log("Response Time :Moodle Summary "+(after-before).toString());
       });
   });
+
+  app.post("/moodle/details",(req,res)=>{
+    var before = Date.now();
+    var credentials = headerParser.parse(req.headers);
+    id = req.query.id;
+    moodleDetails.get(credentials,id,(err,result)=>{
+      if(err) res.json(new Error(result))
+      else{
+        res.json(result);
+      }
+      var after = Date.now();
+      console.log("Response Time :Moodle Detail "+(after-before).toString());
+    });
+  });
+
+  app.post("/exam_schedule",(req,res)=>{
+    var before = Date.now();
+    var credentials = headerParser.parse(req.headers);
+    login.get(app,credentials,(err,data)=>{
+      if(err) res.json(new Error(data));
+      else {
+        examSchedule.get(data,(err,result)=>{
+          if(err) res.json(new Error(result));
+          else{
+            res.json(result);
+          }
+          var after = Date.now();
+          console.log("Response Time :Exam Schedule "+(after-before).toString());
+        });
+      }
+    });
+  });
+
 };

@@ -7,7 +7,6 @@ exports.get = function(code,type,data,callback){
     const page = cheerio.load(data.body);
     const allTables = page("table");
     const noOftables = allTables.length;
-    console.log(code+" "+noOftables.toString());
     if(noOftables==3){
       const $ = cheerio.load("<table>"+ allTables.eq(2).html()+"</table>");
       cheerioTableparser($);
