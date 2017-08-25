@@ -5,6 +5,7 @@ const strings = require("../../strings");
 
 exports.get = function(credentials,callback){
   moodleClient.prepare(credentials,(client)=>{
+    console.log("Client",client);
     if(client!=null){
     client.call({
         wsfunction: "mod_assign_get_assignments"
