@@ -37,7 +37,7 @@ exports.get = function(credentials,id,callback){
           }
           allAcitvities[date] = allModules;
         }
-        callback(false,JSON.stringify(allAcitvities));
+        callback(false,allAcitvities);
     })
   }
     else{
