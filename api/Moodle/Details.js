@@ -19,18 +19,18 @@ exports.get = function(credentials,id,callback){
           for (var moduleInd =0 ;moduleInd<modules.length;moduleInd++){
             module = modules[moduleInd];
             var name = module.name;
-            var url = ""//module.url;
+            var url = module.url;
             var desc = module.description;
             var files = [];
             var type = module.modname;
-            var icon = ""//module.modicon;
+            var icon = module.modicon;
             contents = module.contents;
             if(typeof(contents)!="undefined")
             for (var contentInd=0;contentInd<contents.length;contentInd++){
               content = contents[contentInd];
               files.push({
                 name: content.filename,
-                url : ""//content.fileurl
+                url : content.fileurl
               })
             }
             allModules.push({icon:icon,name,name,type:type,url:url,desc:desc,files:files});
