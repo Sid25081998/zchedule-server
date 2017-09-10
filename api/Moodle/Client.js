@@ -12,6 +12,7 @@ exports.prepare= function(credentials,clientCallback){
       username: credentials.reg,
       password: credentials.password
     }).then((client)=>{
+      console.log(JSON.stringify(client))
       cache.put("Moodle:"+credentials.reg+credentials.password,client,config.validity*60*1000);
       clientCallback(client);
     }).catch(function(err) {

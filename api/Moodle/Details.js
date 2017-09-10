@@ -1,7 +1,10 @@
 const moodleClient = require("./Client");
 var moodle_client = require("moodle-client");
 const config = require("../../config");
-
+//core_course_get_contents,
+/*args:{
+  courseid : id
+}*/
 exports.get = function(credentials,id,callback){
     moodleClient.prepare(credentials,(client)=>{
       if(client!=null){
@@ -30,7 +33,7 @@ exports.get = function(credentials,id,callback){
               content = contents[contentInd];
               files.push({
                 name: content.filename,
-                url : content.fileurl
+                url : content.fileurl+"&token="+client.token
               })
             }
             allModules.push({icon:icon,name,name,type:type,url:url,desc:desc,files:files});
