@@ -1,6 +1,7 @@
 const moodleClient = require("./Client");
 var moodle_client = require("moodle-client");
 const config = require("../../config");
+const strings = require("../../strings");
 //core_course_get_contents,
 /*args:{
   courseid : id
