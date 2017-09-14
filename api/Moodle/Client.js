@@ -10,7 +10,7 @@ exports.prepare= function(credentials,clientCallback){
     moodle_client.init({
       wwwroot: config.moodleBaseUrl,
       username: credentials.reg,
-      password: credentials.password
+      password: credentials.password,
     }).then((client)=>{
       console.log(JSON.stringify(client))
       cache.put("Moodle:"+credentials.reg+credentials.password,client,config.validity*60*1000);
